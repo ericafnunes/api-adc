@@ -29,7 +29,7 @@ app.post('/create_post', async (req, res) => {
         const { title, description, content } = req.body;
 
         console.log(title);
-        console.log(teste);
+        console.log(description);
         console.log(content);
 
         const createPost = await Post.create({ title, description, content });

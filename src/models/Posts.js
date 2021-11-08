@@ -5,7 +5,7 @@ const PostSchema = new mongoose.Schema({
         type: String,
         require: true
     },
-    teste: {
+    description: {
         type: String,
         require: true
     },
