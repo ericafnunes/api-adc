@@ -7,38 +7,38 @@ require('dotenv').config();
 const cors = require('cors')
 
 
-
 const PORT = process.env.PORT
 
+const mongoose = require("mongoose")
+const connect = require('./db/db')
+// const Post = mongoose.model("Post")
 const Post = require('./models/Posts');
+
+connect();
 
 app.use(express.json());
 
 app.use(cors());
 
-app.get('/hello_world', (req, res) => {
-    res.send('testando');
-})
 
-app.post('/create', (req, res) => {
-    const title = req.body.title;
-
-    console.log(title);
-
-    res.send(`Titulo: ${title}`);
-});
 
 app.post('/create_post', async (req, res) => {
 
     try {
-        const { title, content } = req.body;
 
-        const post = await Post.create({ title, content })
+        const { title, teste, content } = req.body;
 
-        res.send(post);
+        console.log(title);
+        console.log(teste);
+        console.log(content);
+
+        const createPost = await Post.create({ title, teste, content });
+
+        res.json({ createPost });
+
 
     } catch (error) {
-        res.status(400).send(error)
+        return res.status(400).json(error)
     }
 });
 
@@ -54,7 +54,7 @@ app.get('/list_posts', async (req, res) => {
     }
 });
 
-app.get('/show_post/:post_id', async (req, res) => {
+app.get('/:post_id', async (req, res) => {
 
     try {
         const postId = req.params.post_id;
