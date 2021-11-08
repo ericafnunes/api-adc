@@ -26,13 +26,13 @@ app.post('/create_post', async (req, res) => {
 
     try {
 
-        const { title, teste, content } = req.body;
+        const { title, description, content } = req.body;
 
         console.log(title);
         console.log(teste);
         console.log(content);
 
-        const createPost = await Post.create({ title, teste, content });
+        const createPost = await Post.create({ title, description, content });
 
         res.json({ createPost });
 
